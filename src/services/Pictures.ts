@@ -1,19 +1,22 @@
-import axios from "axios";
-
-const API_URL = "https://api.pexels.com/v1/curated";
-const API_KEY = "tb1EeTMtJf65pU4XDA7F3WG64hJUviUnP2R552YASyqY0PNPZWbPZnbo";
-
 export const getPictures = async () => {
   try {
-    const res = await axios.get(API_URL, {
-      headers: { Authorization: API_KEY },
-      params: { per_page: 868 },
-    });
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}?page=1&per_page=80`,
+      {
+        headers: { Authorization: import.meta.env.VITE_API_KEY },
+      }
+    );
 
-    console.log(res);
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
 
-    return res.data.photos;
+    const data = await res.json();
+
+    console.log(data);
+
+    return data.photos;
   } catch (err) {
-    console.error("Failed to get response");
+    console.error("Failed to get response", err);
   }
 };
