@@ -7,6 +7,9 @@ export default {
         base: ["Poppins", "sans-serif"],
         tittle: ["Permanent Marker", "cursive"],
       },
+      transitionTimingFunction: {
+        tooltip: "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+      },
     },
   },
   plugins: [],

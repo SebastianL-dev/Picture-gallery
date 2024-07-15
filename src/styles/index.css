@@ -6,10 +6,35 @@
 @tailwind utilities;
 
 body {
-  background: rgb(24, 40, 21);
-  background: radial-gradient(
-    circle,
-    rgb(32, 21, 40) 15%,
-    rgb(17, 17, 17) 100%
+  background: rgb(14, 14, 14);
+}
+
+::-webkit-scrollbar {
+  background: #000;
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #f59e0b;
+  border-radius: 50px;
+}
+
+.dg::before {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    360deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 0) 75%,
+    rgba(0, 0, 0, 1) 105%
+  );
+}
+
+.bgBT::before {
+  background: rgb(245, 158, 11);
+  background: linear-gradient(
+    360deg,
+    rgba(255, 230, 188, 0.123) -10%,
+    rgba(0, 0, 0, 0) 100%
   );
 }
