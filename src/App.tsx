@@ -5,7 +5,6 @@ import "./styles/index.css";
 import { ImageProvider } from "./contexts/imagesCtx";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Download from "./components/global/Download";
 
 export default function App() {
   const location = useLocation();
