@@ -3,30 +3,36 @@ import IImagesData from "../interfaces/Images";
 import { getPictures } from "../services/Pictures";
 
 export interface IImageContext {
-  imageData?: IImagesData[];
-  setImageData: (data: IImagesData[]) => void;
+  imageData?: IImagesData;
+  setImageData: (data: IImagesData) => void;
 }
 
 export const ImageContext = createContext<IImageContext>({} as IImageContext);
 
 export const ImageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [imageData, setImageData] = useState<IImagesData[]>([]);
+  const [images, setImages] = useState<IImagesData>();
+
+  const setImageData = (data: IImagesData) => {
+    setImages(data);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (page: number) => {
       try {
-        const data = await getPictures();
-        setImageData(data);
+        const data = await getPictures(page);
+        if (data) {
+          setImageData(data);
+        }
       } catch (error) {
         console.error("Error fetching images:", error);
       }
     };
 
-    fetchData();
+    fetchData(0);
   }, []);
 
   return (
-    <ImageContext.Provider value={{ imageData, setImageData }}>
+    <ImageContext.Provider value={{ imageData: images, setImageData }}>
       {children}
     </ImageContext.Provider>
   );

@@ -25,7 +25,7 @@ export default function Header({
     >
       <div className="flex gap-24">
         <Link to={"/"}>
-          <h1 className="text-white text-4xl font-bold font-tittle h-min hover:-rotate-[5deg] hover:scale-[1.2] cursor-pointer transition-all ease-linear">
+          <h1 className="text-white drop-shadow-2xl shad text-4xl font-bold font-tittle h-min hover:-rotate-[5deg] hover:scale-[1.2] cursor-pointer transition-all ease-out duration-200">
             Piucture
           </h1>
         </Link>

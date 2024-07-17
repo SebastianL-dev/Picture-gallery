@@ -1,7 +1,7 @@
-export const getPictures = async () => {
+export const getPictures = async (page: number) => {
   try {
     const res = await fetch(
-      `${import.meta.env.VITE_API_URL}?page=1&per_page=80`,
+      `${import.meta.env.VITE_API_URL}?page=${page}&per_page=80`,
       {
         headers: { Authorization: import.meta.env.VITE_API_KEY },
       }
@@ -15,7 +15,7 @@ export const getPictures = async () => {
 
     console.log(data);
 
-    return data.photos;
+    return data;
   } catch (err) {
     console.error("Failed to get response", err);
   }

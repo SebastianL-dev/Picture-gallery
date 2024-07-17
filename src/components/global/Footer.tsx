@@ -8,10 +8,15 @@ export default function Footer() {
         © 2024 | Creado por{" "}
         <span className="font-bold text-neutral-300">Sebastián Lozano</span>
       </p>
-      <button className="group/tooltip relative text-neutral-400 hover:text-white transition-all ease-linear">
+      <a
+        className="group/tooltip relative text-neutral-400 hover:text-white transition-all ease-linear"
+        href="https://github.com/SebastianL-dev/Picture-gallery"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <BsGithub className=" w-9 h-9 " />
         <Tooltip text="GitHub" color="bg-neutral-800 before:bg-neutral-800" />
-      </button>
+      </a>
     </footer>
   );
 }

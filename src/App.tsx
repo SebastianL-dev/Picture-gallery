@@ -31,6 +31,8 @@ export default function App() {
     }
   }, [location.pathname]);
 
+  // if (!imageData) return <p className="text-white">Loading...</p>;
+
   return (
     <ImageProvider>
       <Header A1={headerProps.A1} A2={headerProps.A2} A3={headerProps.A3} />
