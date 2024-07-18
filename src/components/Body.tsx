@@ -10,10 +10,13 @@ import "aos/dist/aos.css";
 import { Photo } from "../interfaces/Images";
 import Download from "../components/global/Download";
 import ReactPaginate from "react-paginate";
-import { getPictures } from "../services/Pictures";
+import { getPicture, getPictures } from "../services/Pictures";
+import { Link } from "react-router-dom";
+import { usePhotoContext } from "../contexts/singleImageCtx";
 
 export default function MainB() {
-  const { imageData } = useImageContext();
+  const { imageData, setImageData } = useImageContext();
+  const { setPhotoData } = usePhotoContext();
 
   useEffect(() => {
     AOS.init();
@@ -47,7 +50,7 @@ export default function MainB() {
     }, 250);
   };
 
-  const { setImageData } = useImageContext();
+  // const { setImageData } = useImageContext();
 
   const fetchData = async (event: any) => {
     await getPictures(event.selected);
@@ -58,8 +61,8 @@ export default function MainB() {
         top: 0,
         behavior: "smooth",
       });
-    } catch (error) {
-      console.error("Failed to fetch images", error);
+    } catch (err) {
+      console.error("Failed to fetch images", err);
     }
   };
 
@@ -73,6 +76,19 @@ export default function MainB() {
 
   const closeWindow = () => {
     setVisible(false);
+  };
+
+  const setPhoto = async (id: number) => {
+    try {
+      const data = await getPicture(id);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setPhotoData(data);
+    } catch (err) {
+      console.error("Failed to fetch images", err);
+    }
   };
 
   if (!imageData) return <p className="text-white">Loading...</p>;
@@ -124,6 +140,11 @@ export default function MainB() {
                 data-aos-duration="500"
                 data-aos-offset="150"
               >
+                <Link
+                  className="w-full h-full absolute z-10"
+                  to={`/photo/${image.id}`}
+                  onClick={() => setPhoto(image.id)}
+                ></Link>
                 <img
                   src={image.src.large}
                   alt={image.alt}

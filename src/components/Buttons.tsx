@@ -53,7 +53,7 @@ export function ActionB({
 
   return (
     <button
-      className={`group/tooltip ${color} hover:text-opacity-85 transition-all ease-linear relative`}
+      className={`group/tooltip ${color} hover:text-opacity-85 hover:scale-110 transition-all ease-linear relative`}
       onClick={Action}
     >
       {icon}

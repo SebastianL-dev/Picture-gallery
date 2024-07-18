@@ -3,8 +3,10 @@ import Footer from "./components/global/Footer";
 import Header from "./components/global/Header";
 import "./styles/index.css";
 import { ImageProvider } from "./contexts/imagesCtx";
+import { PhotoProvider } from "./contexts/singleImageCtx";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import SinglePhoto from "./components/global/Photo";
 
 export default function App() {
   const location = useLocation();
@@ -34,12 +36,15 @@ export default function App() {
   // if (!imageData) return <p className="text-white">Loading...</p>;
 
   return (
-    <ImageProvider>
-      <Header A1={headerProps.A1} A2={headerProps.A2} A3={headerProps.A3} />
-      <Routes>
-        <Route path="/" element={<MainB />} />
-      </Routes>
-      <Footer />
-    </ImageProvider>
+    <PhotoProvider>
+      <ImageProvider>
+        <Header A1={headerProps.A1} A2={headerProps.A2} A3={headerProps.A3} />
+        <Routes>
+          <Route path="/" element={<MainB />} />
+          <Route path="/photo/:id" element={<SinglePhoto />} />
+        </Routes>
+        <Footer />
+      </ImageProvider>
+    </PhotoProvider>
   );
 }
