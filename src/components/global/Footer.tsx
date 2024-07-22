@@ -3,7 +3,7 @@ import Tooltip from "./Tooltip";
 
 export default function Footer() {
   return (
-    <footer className="flex mx-[10%] py-6 justify-between items-center">
+    <footer className="flex mx-[10%] py-6 justify-between items-center max-md:mx-[5%]">
       <p className=" text-neutral-400 font-normal text-sm h-min">
         © 2024 | Creado por{" "}
         <span className="font-bold text-neutral-300">Sebastián Lozano</span>

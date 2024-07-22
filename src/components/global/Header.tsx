@@ -21,7 +21,7 @@ export default function Header({
 
   return (
     <header
-      className={`fixed w-full top-0 z-20 h-min flex px-[12%] ${styles} transition-all justify-between ease-linear duration-200 bg-opacity-90 backdrop-blur-sm`}
+      className={`fixed w-full top-0 z-20 h-min flex px-[12%] max-md:px-[5%] ease-linear transition-all ${styles} transition-all justify-between ease-linear duration-200 bg-opacity-90 backdrop-blur-sm`}
     >
       <div className="flex gap-24">
         <Link to={"/"}>
@@ -29,7 +29,7 @@ export default function Header({
             Piucture
           </h1>
         </Link>
-        <nav className="flex h-max self-center">
+        <nav className="flex h-max self-center max-md:hidden">
           <ul className=" flex gap-6 h-min self-center">
             <HeaderB name="Menu" active={A1} route="/" />
             <HeaderB name="Favoritos" active={A2} route="/liked" />

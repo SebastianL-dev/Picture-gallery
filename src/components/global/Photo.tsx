@@ -67,11 +67,13 @@ export default function SinglePhoto() {
                 icon={<FaBookmark className=" w-6 h-6 " />}
                 tooltext="Guardar"
                 action="save"
+                uniqueId={`saved_${photoData.id.toString()}`}
               />
               <ActionB
                 icon={<FaHeart className="w-6 h-6 " />}
                 tooltext="Like"
                 action="like"
+                uniqueId={`saved_${photoData.id.toString()}`}
               />
             </div>
           </div>

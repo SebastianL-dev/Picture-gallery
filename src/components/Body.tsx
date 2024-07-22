@@ -24,12 +24,10 @@ export default function MainB() {
   }, []);
 
   useEffect(() => {
-    const refreshAOS = setTimeout(() => {
+    setTimeout(() => {
       AOS.refresh();
     }, 600);
-
-    return () => clearTimeout(refreshAOS);
-  }, [imageData]);
+  }, []);
 
   const [visible, setVisible] = useState<boolean>(false);
 
@@ -64,6 +62,9 @@ export default function MainB() {
     } catch (err) {
       console.error("Failed to fetch images", err);
     }
+    setTimeout(() => {
+      AOS.refresh();
+    }, 600);
   };
 
   const breakpointColumnsObj = {
@@ -91,17 +92,19 @@ export default function MainB() {
     }
   };
 
+  const displayed = window.innerWidth <= 550 ? 1 : 2;
+
   if (!imageData) return <p className="text-white">Loading...</p>;
 
   return (
     <>
       <Download visible={visible} close={closeWindow} />
       <section className="flex flex-col items-center pt-56 pb-36 gap-36">
-        <div className="flex flex-col items-center gap-10 mx-[28%]">
-          <h1 className="text-neutral-100 font-bold text-5xl text-center">
+        <div className="flex flex-col items-center gap-10 mx-[28%] max-md:mx-[5%]">
+          <h1 className="text-neutral-100 font-bold text-5xl text-center max-[450px]:text-3xl">
             Descubre un nuevo universo
           </h1>
-          <p className="text-neutral-500 text-center ">
+          <p className="text-neutral-500 text-center max-[450px]:text-sm">
             Sumérgete en un mundo infinito de imágenes, inspírate con todas las
             diferentes obras en esta página, explora la magia en los detalles y
             lleva tu imaginación y tu creatividad al límite.
@@ -115,10 +118,10 @@ export default function MainB() {
             nextLabel=">"
             breakLabel="..."
             containerClassName=""
+            pageRangeDisplayed={displayed}
+            marginPagesDisplayed={displayed}
             onPageChange={fetchData}
-            pageRangeDisplayed={3}
             pageClassName="items-center flex py-0.5 bg-neutral-200 bg-opacity-10 rounded-md transition-all ease-linear hover:bg-opacity-15 hover:scale-110 hover:text-white cursor-pointer "
-            activeClassName="items-center text-white flex py-0.5 bg-neutral-200 bg-opacity-15 rounded-md"
             nextLinkClassName="px-2"
             previousLinkClassName="px-2"
             breakClassName="px-2"
@@ -162,6 +165,7 @@ export default function MainB() {
                       }
                       tooltext="Guardar"
                       action="save"
+                      uniqueId={`saved_${image.id.toString()}`}
                     />
                     <ActionB
                       icon={
@@ -169,6 +173,7 @@ export default function MainB() {
                       }
                       tooltext="Like"
                       action="like"
+                      uniqueId={`liked_${image.id.toString()}`}
                     />
                   </div>
                 </div>
@@ -192,7 +197,8 @@ export default function MainB() {
             breakLabel="..."
             containerClassName=""
             onPageChange={fetchData}
-            pageRangeDisplayed={3}
+            pageRangeDisplayed={displayed}
+            marginPagesDisplayed={displayed}
             pageClassName="items-center flex py-0.5 bg-neutral-200 bg-opacity-10 rounded-md transition-all ease-linear hover:bg-opacity-15 hover:scale-110 hover:text-white cursor-pointer "
             activeClassName="items-center text-white flex py-0.5 bg-neutral-200 bg-opacity-15 rounded-md"
             nextLinkClassName="px-2"

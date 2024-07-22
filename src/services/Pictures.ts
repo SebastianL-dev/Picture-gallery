@@ -13,8 +13,6 @@ export const getPictures = async (page: number) => {
 
     const data = await res.json();
 
-    console.log(data);
-
     return data;
   } catch (err) {
     console.error("Failed to get response", err);
@@ -32,8 +30,6 @@ export const getPicture = async (id: number) => {
     }
 
     const data = await res.json();
-
-    console.log(data);
 
     return data;
   } catch (err) {

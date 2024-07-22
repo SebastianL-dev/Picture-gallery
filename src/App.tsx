@@ -7,6 +7,7 @@ import { PhotoProvider } from "./contexts/singleImageCtx";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SinglePhoto from "./components/global/Photo";
+import SavedSection from "./components/Saved";
 
 export default function App() {
   const location = useLocation();
@@ -33,14 +34,13 @@ export default function App() {
     }
   }, [location.pathname]);
 
-  // if (!imageData) return <p className="text-white">Loading...</p>;
-
   return (
     <PhotoProvider>
       <ImageProvider>
         <Header A1={headerProps.A1} A2={headerProps.A2} A3={headerProps.A3} />
         <Routes>
           <Route path="/" element={<MainB />} />
+          <Route path="/collections" element={<SavedSection />} />
           <Route path="/photo/:id" element={<SinglePhoto />} />
         </Routes>
         <Footer />

@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import Tooltip from "./global/Tooltip";
 import { Link } from "react-router-dom";
 
@@ -30,31 +30,31 @@ export function ActionB({
   icon,
   tooltext,
   action,
+  uniqueId,
 }: {
   icon: ReactElement;
   tooltext: string;
   action: string;
+  uniqueId: string;
 }) {
-  const [color, setColor] = useState<string>(
-    "text-neutral-300 text-opacity-40"
-  );
-  const [colorC, setColorC] = useState<boolean>(true);
+  const [colorC, setColorC] = useState(() => {
+    return localStorage.getItem(uniqueId) === "true";
+  });
 
-  const Action = () => {
-    setColorC(!colorC);
-    if (action == "save" && colorC) {
-      setColor("text-amber-400 text-opacity-85");
-    } else if (action == "like" && colorC) {
-      setColor("text-red-500 text-opacity-85");
-    } else if (!colorC) {
-      setColor("text-neutral-300 text-opacity-40");
-    }
-  };
+  useEffect(() => {
+    localStorage.setItem(uniqueId, colorC.toString());
+  }, [colorC, uniqueId]);
 
   return (
     <button
-      className={`group/tooltip ${color} hover:text-opacity-85 hover:scale-110 transition-all ease-linear relative`}
-      onClick={Action}
+      className={`group/tooltip ${
+        colorC
+          ? action === "save"
+            ? "text-amber-400 text-opacity-70 hover:text-opacity-100"
+            : "text-red-500 text-opacity-70 hover:text-opacity-100"
+          : "text-white text-opacity-40 hover:text-opacity-50"
+      } hover:text-opacity-85 hover:scale-110 transition-all ease-linear relative`}
+      onClick={() => setColorC(!colorC)}
     >
       {icon}
       <Tooltip text={tooltext} color="bg-neutral-900 before:bg-neutral-900" />
