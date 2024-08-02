@@ -4,18 +4,17 @@
 
 ---
 
-> [!IMPORTANT]
-> **Piucture** usa diferentes tecnologias para funcionar
+> [!IMPORTANT] > **Piucture** usa diferentes tecnologias para funcionar
 
 ### Librerias, frameworks y API's usados
-- React
-- TypeScript
-- React-Icons
-- Masonry
-- React-Paginate
-- TailWindCSS
-- AOS
-- Vite
-- Pexels API
+
+- [React](https://es.react.dev)
+- [TypeScript](https://www.typescriptlang.org)
+- [React-Icons](https://react-icons.github.io/react-icons/)
+- [Masonry](https://mui.com/material-ui/react-masonry/)
+- [TailWindCSS](https://tailwindcss.com)
+- [AOS](https://michalsnik.github.io/aos/)
+- [Vite](https://vitejs.dev)
+- [Pexels API](https://www.pexels.com/api/)
 
 ## Clonación del repositorio
