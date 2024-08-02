@@ -4,8 +4,7 @@
 
 ---
 
-> [!IMPORTANT]
-> **Piucture** usa diferentes tecnologias para funcionar.
+> [!IMPORTANT] > **Piucture** usa diferentes tecnologias para funcionar.
 
 ### Librerias, frameworks y API's usados
 
@@ -19,9 +18,11 @@
 - [Pexels API](https://www.pexels.com/api/)
 
 ---
+
 ## 1. Instalación
 
 ### Clonación del repositorio
+
 > [!IMPORTANT]
 > Sigue los pasos escribiendo los siguentes codigos en tu terminal.
 
@@ -56,8 +57,11 @@ pnpm install
 ```bash
 pnpm run dev
 ```
+
 ---
+
 ## 3. Estructura
+
 La siguiente es la estructura que contiene los ficheros y directorios mas importantes de [**Piucture**](https://piucture.vercel.app).
 
 ```plaintext
@@ -95,8 +99,11 @@ Picture-gallery/
 ├── index.html
 └── README.md
 ```
+
 ---
+
 ### Descripción
+
 Esta es la descripción de la función que tienen los ficheros guardados en cada directorio de [**Piucture**](https://piucture.vercel.app).
 
 > [!IMPORTANT]
@@ -109,12 +116,12 @@ Esta es la descripción de la función que tienen los ficheros guardados en cada
      - **`global/`**: Componentes generales en la aplicación.
      - **`contexts/`**: Contextos de react para manejar el estado.
      - **`hooks/`**: Hook personalizado para guardar las imagenes con like.
-     - **`interfaces/`**: Definicion de interfaz.
+     - **`interfaces/`**: Definición de interfaz.
      - **`services/`**: Servicios para llamar a la API.
      - **`styles/`**: Archivos de estilos.
 3. **Archivos de configuración y otros archivos**:
    - **`.env.local`**, **`index.html`**, **`README.md`**.
 
 ---
-  
+
 © 2024 | Creado por [**Sebastián Lozano**](https://github.com/SebastianL-dev)
