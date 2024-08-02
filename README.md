@@ -5,7 +5,7 @@
 ---
 
 > [!IMPORTANT]
-> **Piucture** usa diferentes tecnologias para funcionar
+> **Piucture** usa diferentes tecnologias para funcionar.
 
 ### Librerias, frameworks y API's usados
 - React
@@ -18,4 +18,38 @@
 - Vite
 - Pexels API
 
-## Clonación del repositorio
+## 1. Instalación
+- ### Clonación del repositorio
+
+<div style="padding: 5px; border: 1px solid #ddd; border-radius: 4px; background-color: #f5f5f5; display: inline-block;">
+  <strong style="color: #333;">Bash</strong>
+</div>
+
+```bash
+git clone https://github.com/tu_usuario/piucture.git
+```
+
+- ### Instalación de dependencias
+
+> [!TIP]
+> Usa pnpm para mayor comodidad.
+
+<div style="padding: 5px; border: 1px solid #ddd; border-radius: 4px; background-color: #f5f5f5; display: inline-block;">
+  <strong style="color: #333;">Bash</strong>
+</div>
+
+```bash
+cd piucture
+pnpm install
+```
+
+- ### Ejecución
+
+<div style="padding: 5px; border: 1px solid #ddd; border-radius: 4px; background-color: #f5f5f5; display: inline-block;">
+  <strong style="color: #333;">Bash</strong>
+</div>
+
+```bash
+pnpm run dev
+```
+
