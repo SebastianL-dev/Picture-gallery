@@ -4,7 +4,8 @@
 
 ---
 
-> [!IMPORTANT] > **Piucture** usa diferentes tecnologias para funcionar.
+> [!IMPORTANT]
+> **Piucture** usa diferentes tecnologias para funcionar.
 
 ### Librerias, frameworks y API's usados
 
