@@ -1,20 +1,33 @@
 import { useEffect, useState } from "react";
 import { getPicture } from "../services/Pictures";
-import { FaBookmark, FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { Photo } from "../interfaces/Images";
 import { ActionB } from "./Buttons";
 import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
+import AOS from "aos";
 import { usePhotoContext } from "../contexts/singleImageCtx";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import Download from "./global/Download";
+import Loader from "./global/Loader";
 
 export default function SavedSection() {
   const [photos, setPhotos] = useState<Photo[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   const { setPhotoData } = usePhotoContext();
+
+  useEffect(() => {
+    AOS.init();
+    window.addEventListener("load", AOS.refresh);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      AOS.refresh();
+    }, 600);
+  }, []);
 
   useEffect(() => {
     const localStorageKeys = Object.keys(localStorage);
@@ -25,24 +38,31 @@ export default function SavedSection() {
     const fetchPhotos = async () => {
       const fetchedPhotos = await Promise.all(
         savedKeys.map(async (key) => {
-          const [, id] = key.split("_");
-          const data = await getPicture(parseInt(id));
+          const data = await getPicture(parseInt(key));
           return data;
         })
       );
       setPhotos(fetchedPhotos);
-      setLoading(false);
+      // setLoading(false);
     };
 
     fetchPhotos();
   }, []);
 
-  const breakpointColumnsObj = {
-    default: 4,
-    1920: 4,
-    1460: 3,
-    1080: 2,
-    720: 1,
+  const calculateColumns = (): { [key: string]: number } => {
+    const defaultColumns = 4;
+    if (photos.length == 1) return { default: 1 };
+    if (photos.length <= 2) return { default: 2 };
+    if (photos.length <= 3 && photos.length > 2) return { default: 3 };
+    if (photos.length >= 4) return { default: 4 };
+
+    return {
+      default: defaultColumns,
+      1920: defaultColumns,
+      1460: 3,
+      1080: 2,
+      720: 1,
+    };
   };
 
   const [visible, setVisible] = useState<boolean>(false);
@@ -81,14 +101,24 @@ export default function SavedSection() {
     }
   };
 
-  if (loading) return <p className="text-white">Loading...</p>;
+  if (photos.length == 0)
+    return (
+      <Loader
+        text={
+          <p className="text-neutral-400 text-center">
+            ¡Parece que no hay nada por aqui! <br /> ¿Ya probaste dando like a
+            una imagen?
+          </p>
+        }
+      />
+    );
 
   return (
     <>
       <Download visible={visible} close={closeWindow} />
       <section className="flex flex-col items-center pt-56 pb-36 gap-36">
         <Masonry
-          breakpointCols={breakpointColumnsObj}
+          breakpointCols={calculateColumns()}
           className="flex mx-[10%] gap-4 mb-20"
           columnClassName="flex flex-col gap-4"
         >
@@ -96,10 +126,10 @@ export default function SavedSection() {
             <div
               key={image.id}
               className="rounded-lg border-2 border-opacity-0 border-white hover:border-opacity-80 cursor-pointer overflow-hidden group dg relative hover:before:opacity-100 before:content-[''] before:rounded-lg  before:absolute before:w-full before:h-full before:opacity-0 before:z-10 before:bottom-0 before:transition-all before:ease-out before:duration-300"
-              // data-aos="zoom-in-up"
-              // data-aos-easing="ease-out"
-              // data-aos-duration="500"
-              // data-aos-offset="150"
+              data-aos="zoom-in-up"
+              data-aos-easing="ease-out"
+              data-aos-duration="500"
+              data-aos-offset="150"
             >
               <Link
                 className="w-full h-full absolute z-10"
@@ -119,19 +149,10 @@ export default function SavedSection() {
                 <div className="flex gap-2 items-center">
                   <ActionB
                     icon={
-                      <FaBookmark className=" w-5 h-5 opacity-0 group-hover:opacity-100" />
-                    }
-                    tooltext="Guardar"
-                    action="save"
-                    uniqueId={`saved_${image.id.toString()}`}
-                  />
-                  <ActionB
-                    icon={
                       <FaHeart className="w-5 h-5 opacity-0 group-hover:opacity-100" />
                     }
                     tooltext="Like"
-                    action="like"
-                    uniqueId={`liked_${image.id.toString()}`}
+                    uniqueId={image.id.toString()}
                   />
                 </div>
               </div>

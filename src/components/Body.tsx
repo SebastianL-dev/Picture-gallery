@@ -1,6 +1,6 @@
 import Masonry from "react-masonry-css";
 import { useImageContext } from "../contexts/imagesCtx";
-import { FaBookmark, FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { ActionB } from "./Buttons";
@@ -13,6 +13,7 @@ import ReactPaginate from "react-paginate";
 import { getPicture, getPictures } from "../services/Pictures";
 import { Link } from "react-router-dom";
 import { usePhotoContext } from "../contexts/singleImageCtx";
+import Loader from "./global/Loader";
 
 export default function MainB() {
   const { imageData, setImageData } = useImageContext();
@@ -94,7 +95,7 @@ export default function MainB() {
 
   const displayed = window.innerWidth <= 550 ? 1 : 2;
 
-  if (!imageData) return <p className="text-white">Loading...</p>;
+  if (!imageData) return <Loader text={<></>} />;
 
   return (
     <>
@@ -161,19 +162,10 @@ export default function MainB() {
                   <div className="flex gap-2 items-center">
                     <ActionB
                       icon={
-                        <FaBookmark className=" w-5 h-5 opacity-0 group-hover:opacity-100" />
-                      }
-                      tooltext="Guardar"
-                      action="save"
-                      uniqueId={`saved_${image.id.toString()}`}
-                    />
-                    <ActionB
-                      icon={
                         <FaHeart className="w-5 h-5 opacity-0 group-hover:opacity-100" />
                       }
                       tooltext="Like"
-                      action="like"
-                      uniqueId={`liked_${image.id.toString()}`}
+                      uniqueId={image.id.toString()}
                     />
                   </div>
                 </div>

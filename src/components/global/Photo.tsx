@@ -5,7 +5,8 @@ import { useState } from "react";
 import { Photo } from "../../interfaces/Images";
 import Download from "./Download";
 import { ActionB } from "../Buttons";
-import { FaBookmark, FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import Loader from "./Loader";
 
 export default function SinglePhoto() {
   const { photoData } = usePhotoContext();
@@ -32,12 +33,12 @@ export default function SinglePhoto() {
     setVisible(false);
   };
 
-  if (!photoData) return <p className="text-white">Loading...</p>;
+  if (!photoData) return <Loader text={<></>} />;
   return (
     <>
       <Download visible={visible} close={closeWindow} />
       <section className="pt-40 pb-36 flex justify-center">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 mx-4">
           <img
             className="rounded-xl"
             src={photoData.src.large}
@@ -64,16 +65,9 @@ export default function SinglePhoto() {
             </button>
             <div className="flex gap-2">
               <ActionB
-                icon={<FaBookmark className=" w-6 h-6 " />}
-                tooltext="Guardar"
-                action="save"
-                uniqueId={`saved_${photoData.id.toString()}`}
-              />
-              <ActionB
                 icon={<FaHeart className="w-6 h-6 " />}
                 tooltext="Like"
-                action="like"
-                uniqueId={`saved_${photoData.id.toString()}`}
+                uniqueId={photoData.id.toString()}
               />
             </div>
           </div>
