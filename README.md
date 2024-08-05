@@ -4,7 +4,7 @@
 
 ---
 
-> [!IMPORTANT]
+> [!NOTE]
 > **Piucture** usa diferentes tecnologias para funcionar.
 
 ### Librerias, frameworks y API's usados
@@ -107,7 +107,7 @@ Picture-gallery/
 
 Esta es la descripción de la función que tienen los ficheros guardados en cada directorio de [**Piucture**](https://piucture.vercel.app).
 
-> [!IMPORTANT]
+> [!NOTE]
 > Descripcion de cada fichero y directorio de la estructura del proyecto.
 
 1. **`public/`**: Contiene archivos públicos, como imágenes.
